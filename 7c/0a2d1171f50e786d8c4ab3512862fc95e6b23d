@@ -1,0 +1,144 @@
+.gitignore
+  h_707002fa12fd0a 1-2
+app/.gitignore
+  s_9cd268d631b663::t_06a7839c3620d2 1-24
+app/.vscode/extensions.json
+  s_9cd268d631b663::t_9a344c311f11e6 1-3
+app/package-lock.json
+  s_e83e055713bb4d::t_d715e022f2be78 1-1637
+app/package.json
+  s_e83e055713bb4d::t_840b5f892136fa 1-34
+app/public/tauri.svg
+  s_9cd268d631b663::t_1162aae68a8b69 1-6
+app/public/vite.svg
+  s_9cd268d631b663::t_a29195ba4d1766 1
+app/src-tauri/.gitignore
+  s_9cd268d631b663::t_61dae5f6139bf4 1-7
+app/src-tauri/build.rs
+  s_9cd268d631b663::t_0a1aebb75372e1 1-3
+app/src-tauri/src/main.rs
+  s_9cd268d631b663::t_a411e2e5892ac1 1-6
+app/src/assets/react.svg
+  s_9cd268d631b663::t_1f14f4997d98cf 1
+app/src/lib/types.ts
+  s_9cd268d631b663::t_c1cc70d64031fe 1-12
+app/src/vite-env.d.ts
+  s_9cd268d631b663::t_c5b99cbe5474ef 1
+app/tsconfig.json
+  s_9cd268d631b663::t_741979fd1ddab0 1-25
+app/tsconfig.node.json
+  s_9cd268d631b663::t_6c237438499864 1-10
+app/vite.config.ts
+  s_9cd268d631b663::t_8e8f21917cc040 1-32
+sample-data/days/2026-11-20.md
+  s_e83e055713bb4d::t_7d1e8e23a704ff 1-29
+sample-data/days/2026-11-22.md
+  s_e83e055713bb4d::t_e0ba51550a0ac4 1-17
+sample-data/days/2026-11-23.md
+  s_e83e055713bb4d::t_a8f59908f7149d 1-49
+README.md
+  h_707002fa12fd0a 1-15
+app/README.md
+  h_707002fa12fd0a 1-43
+app/index.html
+  h_707002fa12fd0a 1-16
+app/public/mock-tauri.js
+  h_707002fa12fd0a 1-127
+app/src-tauri/Cargo.lock
+  h_707002fa12fd0a 1-5236
+app/src-tauri/Cargo.toml
+  h_707002fa12fd0a 1-44
+app/src-tauri/capabilities/default.json
+  h_707002fa12fd0a 1-46
+app/src-tauri/icons/android/mipmap-anydpi-v26/ic_launcher.xml
+  h_707002fa12fd0a 1-5
+app/src-tauri/icons/android/values/ic_launcher_background.xml
+  h_707002fa12fd0a 1-4
+app/src-tauri/src/hotkey.rs
+  h_707002fa12fd0a 1-138
+app/src-tauri/src/lib.rs
+  h_707002fa12fd0a 1-24
+app/src-tauri/tauri.conf.json
+  h_707002fa12fd0a 1-35
+app/src/App.css
+  h_707002fa12fd0a 1-467
+app/src/App.tsx
+  h_707002fa12fd0a 1-397
+app/src/components/BodyEditor.tsx
+  h_707002fa12fd0a 1-291
+app/src/components/ExitPrompt.tsx
+  h_707002fa12fd0a 1-46
+app/src/components/TaskModal.tsx
+  h_707002fa12fd0a 1-174
+app/src/components/WorkspaceMenu.tsx
+  h_707002fa12fd0a 1-80
+app/src/components/icons.tsx
+  h_707002fa12fd0a 1-47
+app/src/lib/allocateTaskId.ts
+  h_707002fa12fd0a 1-37
+app/src/lib/archiveTask.ts
+  h_707002fa12fd0a 1-44
+app/src/lib/attachments.ts
+  h_707002fa12fd0a 1-95
+app/src/lib/bodyPreview.ts
+  h_707002fa12fd0a 1-11
+app/src/lib/cleanupArchive.ts
+  h_707002fa12fd0a 1-104
+app/src/lib/completeTask.ts
+  h_707002fa12fd0a 1-63
+app/src/lib/createTask.ts
+  h_707002fa12fd0a 1-111
+app/src/lib/dayFile.ts
+  h_707002fa12fd0a 1-180
+app/src/lib/initWorkspace.ts
+  h_707002fa12fd0a 1-79
+app/src/lib/parseIndex.ts
+  h_707002fa12fd0a 1-151
+app/src/lib/path.ts
+  h_707002fa12fd0a 1-9
+app/src/lib/time.ts
+  h_707002fa12fd0a 1-34
+app/src/lib/title.ts
+  h_707002fa12fd0a 1-39
+app/src/lib/updateTask.ts
+  h_707002fa12fd0a 1-70
+app/src/lib/workspace.ts
+  h_707002fa12fd0a 1-122
+app/src/main.tsx
+  h_707002fa12fd0a 1-9
+docs/prd-local-todo.md
+  h_707002fa12fd0a 1-420
+sample-data/DATA_FORMAT.md
+  h_707002fa12fd0a 1-36
+sample-data/index.md
+  h_707002fa12fd0a 1-23
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.21",
+  "base_commit_sha": "7c0a2d1171f50e786d8c4ab3512862fc95e6b23d",
+  "prompts": {},
+  "humans": {
+    "h_707002fa12fd0a": {
+      "author": "andre.lan <andre.lan@jtexpress.com>"
+    }
+  },
+  "sessions": {
+    "s_9cd268d631b663": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "dd08a193-b434-407b-b83b-d7bebf3f36a8",
+        "model": "default"
+      },
+      "human_author": "andre.lan <andre.lan@jtexpress.com>"
+    },
+    "s_e83e055713bb4d": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "d19de109-ab04-4cc7-ab12-f691a8678deb",
+        "model": "default"
+      },
+      "human_author": "andre.lan <andre.lan@jtexpress.com>"
+    }
+  }
+}
