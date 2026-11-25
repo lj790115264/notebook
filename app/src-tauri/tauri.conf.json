@@ -13,8 +13,8 @@
     "windows": [
       {
         "title": "NoteBook",
-        "width": 840,
-        "height": 640
+        "width": 450,
+        "height": 670
       }
     ],
     "security": {

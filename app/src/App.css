@@ -240,12 +240,44 @@ button.tab.active {
 }
 
 .task-card .preview {
-  white-space: pre-wrap;
   word-break: break-word;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
+}
+
+/* 预览内轻量 Markdown */
+.task-card .preview > span {
+  display: block;
+}
+
+.task-card .preview .md-h {
+  font-weight: 650;
+  color: #1c1917;
+}
+
+.task-card .preview .md-h2 {
+  font-size: 1.02em;
+}
+
+.task-card .preview .md-h3 {
+  font-size: 0.98em;
+}
+
+.task-card .preview .md-h4,
+.task-card .preview .md-h5,
+.task-card .preview .md-h6 {
+  font-size: 0.95em;
+  font-weight: 600;
+}
+
+.task-card .preview code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.88em;
+  background: #f0ebe1;
+  border-radius: 4px;
+  padding: 0.05em 0.3em;
 }
 
 .task-actions {

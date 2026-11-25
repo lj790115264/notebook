@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { listen } from "@tauri-apps/api/event";
 import { ExitPrompt } from "./components/ExitPrompt";
 import { TaskModal, type TaskModalMode } from "./components/TaskModal";
+import { TaskPreview } from "./components/TaskPreview";
 import { WorkspaceMenu } from "./components/WorkspaceMenu";
 import { ArchiveIcon, CheckIcon, PlusIcon, UndoIcon } from "./components/icons";
 import { archiveTask } from "./lib/archiveTask";
@@ -286,7 +287,7 @@ function App() {
                       setModal({ kind: "edit", taskId: task.id })
                     }
                   >
-                    <div className="preview">{task.preview}</div>
+                    <TaskPreview text={task.preview} />
                   </button>
                   <div className="task-actions">
                     {isPending ? (
