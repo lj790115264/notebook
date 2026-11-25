@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import { listen } from "@tauri-apps/api/event";
+import { invoke } from "@tauri-apps/api/core";
+import { getCurrentWindow } from "@tauri-apps/api/window";
 import { ExitPrompt } from "./components/ExitPrompt";
 import { TaskModal, type TaskModalMode } from "./components/TaskModal";
 import { TaskPreview } from "./components/TaskPreview";
@@ -20,6 +21,12 @@ import {
 } from "./lib/workspace";
 import "./App.css";
 
+// 多工作区窗口：额外窗口（ws-N）由 Rust 创建时注入固定工作区路径，主窗口无此值。
+// 全局 listen 会收到发往任意窗口的事件，因此关闭提示等事件必须用窗口定向 listen。
+const injectedWorkspace = (window as { __NB_WORKSPACE__?: string }).__NB_WORKSPACE__;
+const currentWindow = getCurrentWindow();
+const isMainWindow = currentWindow.label === "main";
+
 function App() {
   const [workspace, setWorkspace] = useState<string | null>(null);
   const [tab, setTab] = useState<ListTab>("pending");
@@ -39,7 +46,7 @@ function App() {
   useEffect(() => {
     let unlisten: (() => void) | undefined;
     let cancelled = false;
-    void listen("close-requested", () => setExitPromptOpen(true)).then((u) => {
+    void currentWindow.listen("close-requested", () => setExitPromptOpen(true)).then((u) => {
       if (cancelled) u();
       else unlisten = u;
     });
@@ -107,6 +114,12 @@ function App() {
   }, []);
 
   useEffect(() => {
+    // 额外工作区窗口：直接绑定注入的工作区，首次加载交给 refresh effect
+    if (injectedWorkspace) {
+      setWorkspace(injectedWorkspace);
+      setBooting(false);
+      return;
+    }
     const remembered = getRememberedWorkspace();
     if (!remembered) {
       setBooting(false);
@@ -139,8 +152,28 @@ function App() {
     setModal(null);
     setTab("pending");
     setWorkspace(path);
-    rememberWorkspace(path);
+    if (isMainWindow) {
+      rememberWorkspace(path);
+    } else {
+      // 额外窗口就地换目录：同步恢复列表与窗口标题
+      void invoke("rebind_workspace", {
+        label: currentWindow.label,
+        newPath: path,
+      }).catch((e) => console.warn("更新工作区窗口绑定失败：", e));
+    }
     await refresh(path, "pending");
+  }
+
+  // 选一个目录，弹出一个绑定该工作区的新窗口（与主窗口同款 UI）
+  async function onOpenNewWorkspace() {
+    const path = await pickWorkspaceFolder();
+    if (!path) return;
+    try {
+      await invoke("open_workspace", { path });
+    } catch (e) {
+      const message = e instanceof Error ? e.message : String(e);
+      setError(`打开新工作区窗口失败：${message}`);
+    }
   }
 
   async function onComplete(taskId: string) {
@@ -228,6 +261,7 @@ function App() {
           workspace={workspace}
           loading={loading}
           onSwitch={() => void onChooseWorkspace()}
+          onOpenNewWindow={() => void onOpenNewWorkspace()}
           onRefresh={() => void refresh(workspace, tab)}
         />
         <button

@@ -83,6 +83,17 @@
         location.reload();
         return null;
       }
+      if (cmd === "plugin:window|hide") return null;
+      if (cmd === "open_workspace") {
+        alert("浏览器演示模式不支持新开工作区窗口，请在桌面应用中使用");
+        return null;
+      }
+      if (cmd === "rebind_workspace") return null;
+      if (cmd === "close_workspace" || cmd === "exit_app") {
+        location.hash = "";
+        location.reload();
+        return null;
+      }
       if (cmd === "plugin:event|listen") return 1;
       if (cmd === "plugin:event|unlisten" || cmd === "plugin:event|emit") return null;
       const p = typeof args?.path === "string" ? normKey(abs(args.path)) : null;

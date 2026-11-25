@@ -1,3 +1,4 @@
+import { invoke } from "@tauri-apps/api/core";
 import { getCurrentWindow } from "@tauri-apps/api/window";
 
 interface ExitPromptProps {
@@ -5,8 +6,18 @@ interface ExitPromptProps {
   onBackground: () => void;
 }
 
-/** 点窗口关闭时的提示：放入后台继续运行（双 Tab 可唤出）或直接退出。 */
+/** 点窗口关闭时的提示：放入后台继续运行（Alt+Q 可唤出）或直接关闭。
+ *  主窗口直接关闭 = 退出整个应用；额外工作区窗口 = 仅关闭该窗口。 */
 export function ExitPrompt({ onBackground }: ExitPromptProps) {
+  const label = getCurrentWindow().label;
+  const isMain = label === "main";
+  function onClose() {
+    if (isMain) {
+      void invoke("exit_app").catch(console.warn);
+    } else {
+      void invoke("close_workspace", { label }).catch(console.warn);
+    }
+  }
   return (
     <div className="modal-backdrop" role="presentation">
       <div
@@ -20,11 +31,12 @@ export function ExitPrompt({ onBackground }: ExitPromptProps) {
         </header>
         <div className="modal-body">
           <p className="exit-prompt-text">
-            放入后台后应用继续运行，可随时连按两次 Tab 呼出；直接关闭将退出应用。
+            放入后台后窗口继续运行，可按 Alt+Q 唤出全部窗口；直接关闭将
+            {isMain ? "退出应用" : "关闭此工作区窗口"}。
           </p>
         </div>
         <footer className="modal-footer">
-          <button type="button" onClick={() => void getCurrentWindow().destroy()}>
+          <button type="button" onClick={onClose}>
             直接关闭
           </button>
           <button

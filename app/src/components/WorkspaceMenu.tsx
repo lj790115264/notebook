@@ -4,6 +4,7 @@ interface WorkspaceMenuProps {
   workspace: string;
   loading: boolean;
   onSwitch: () => void;
+  onOpenNewWindow: () => void;
   onRefresh: () => void;
 }
 
@@ -11,6 +12,7 @@ export function WorkspaceMenu({
   workspace,
   loading,
   onSwitch,
+  onOpenNewWindow,
   onRefresh,
 }: WorkspaceMenuProps) {
   const [open, setOpen] = useState(false);
@@ -61,6 +63,16 @@ export function WorkspaceMenu({
             }}
           >
             切换工作区
+          </button>
+          <button
+            type="button"
+            role="menuitem"
+            onClick={() => {
+              setOpen(false);
+              onOpenNewWindow();
+            }}
+          >
+            新窗口打开工作区…
           </button>
           <button
             type="button"
